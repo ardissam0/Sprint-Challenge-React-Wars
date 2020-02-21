@@ -6,9 +6,15 @@ const StarDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-wdith: 315px;
-    min-width: 315px;
-    padding: 15px 15px 0 0;
+    max-wdith: 300px;
+    min-width: 300px;
+    padding: 3%;
+    margin-bottom: 1.5%;
+    margin-top: 3%;
+    font-weight: bold;
+    font-size: 1.25rem;
+    background-color: rgba(138, 73, 41, 0.6);
+    border: solid black 5px;
 `;
 
 const StarWarsPage = props => {
