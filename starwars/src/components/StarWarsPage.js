@@ -11,19 +11,20 @@ const StarDiv = styled.div`
     padding: 15px 15px 0 0;
 `;
 
-const StarWarsPage = (props) => {
+const StarWarsPage = props => {
+    console.log(props);
     return (
         <StarDiv>
             <Card>
-                <CardHeader>Name: {props.name}</CardHeader>
+                <CardHeader>Name: {props.item.name}</CardHeader>
                 <CardBody>
-                    <CardTitle>Birthday: {props.birth_year}</CardTitle>
-                    <CardTitle>Gender: {props.gender}</CardTitle>
-                    <CardTitle>Height: {props.height}</CardTitle>
-                    <CardTitle>Mass: {props.mass}</CardTitle>
-                    <CardTitle>Hair Color: {props.hair_color}</CardTitle>
-                    <CardTitle>Skin Color: {props.skin_color}</CardTitle>
-                    <CardTitle>Eye Color: {props.eye_color}</CardTitle>
+                    <CardTitle>Birthday: {props.item.birth_year}</CardTitle>
+                    <CardTitle>Gender: {props.item.gender}</CardTitle>
+                    <CardTitle>Height: {props.item.height}</CardTitle>
+                    <CardTitle>Mass: {props.item.mass}</CardTitle>
+                    <CardTitle>Hair Color: {props.item.hair_color}</CardTitle>
+                    <CardTitle>Skin Color: {props.item.skin_color}</CardTitle>
+                    <CardTitle>Eye Color: {props.item.eye_color}</CardTitle>
                 </CardBody>
             </Card>
         </StarDiv>
