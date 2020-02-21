@@ -1,19 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import axios from 'axios';
+
+import styled from 'styled-components';
+import StarWarsPage from './components/StarWarsPage';
+import LoadingPage from './components/LoadingPage';
+import PageForPagination from './components/PageForPagination';
+
+const PersonStyle = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+`;
 
 const App = () => {
-  // Try to think through what state you'll need for this app before starting. Then build out
-  // the state properties here.
+  const SwapiUrl = 'https://swapi.co/api/people/';
+  const [person, setPerson] = useState();
+  const [url, setUrl] = useState(SwapiUrl);
+  const [changeUrl, setChangeUrl] = useState('');
+  const [backUrl, setBackUrl] = useState('');
 
-  // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
-  // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
+  useEffect(() => {
+    axios.get(url)
+    .then(response => {
+      setPerson(response.data.results);
+      setChangeUrl(response.data.next);
+      setBackUrl(response.data.previous);
+    })
+    .catch(err => console.log(err));
+  }, [url]);
+  console.log(person);
+
+  if (!person) return <LoadingPage />;
 
   return (
-    <div className="App">
-      <h1 className="Header">React Wars</h1>
-    </div>
+    <PersonStyle>
+    {person.map((item, index) => (
+      <StarWarsPage key={index} item={item} />
+    ))}
+    <PageForPagination next = {changeUrl} previous = {backUrl} url = {setUrl} />
+    </PersonStyle>
   );
-}
+};
 
 export default App;
